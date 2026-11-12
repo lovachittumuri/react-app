@@ -10,6 +10,12 @@ pipeline {
 					url: 'https://github.com/lovachittumuri/react-app.git'
 			}
 		}
+
+        stage('Build') {
+            steps {
+                bat 'npm install'
+                bat 'npm run build'
+            }
         }
 
     post {
