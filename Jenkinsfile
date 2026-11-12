@@ -18,6 +18,29 @@ pipeline {
             }
         }
 
+        stage('Docker Build') {
+            steps {
+                echo 'Building Docker Image ...... Waiting for 5 seconds'
+
+                //bat 'docker build .'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying Spring Boot and MySQL Containers'
+
+                bat 'docker compose -f compose.yml up'
+
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                bat 'docker compose ps'
+            }
+        }
+
     }
     post {
         success {
